@@ -1,0 +1,34 @@
+{
+  "name": "cy-menu",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "lib",
+    "index.d.ts"
+  ],
+  "main": "./lib/cy-menu.umd.cjs",
+  "module": "./lib/cy-menu.js",
+  "types": "./index.d.ts",
+  "exports": {
+    "types": "./index.d.ts",
+    "import": "./lib/cy-menu.js",
+    "require": "./lib/cy-menu.umd.cjs"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "babel-preset-solid": "^1.6.2",
+    "sass": "^1.56.1",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.4",
+    "vite-plugin-solid": "^2.4.0"
+  },
+  "dependencies": {
+    "solid-element": "^1.6.2",
+    "solid-js": "^1.6.2"
+  }
+}
