@@ -1,20 +1,14 @@
 .cy-menu {
+  --cy-text-color: #213547;
 
-  .title {
-    margin: 0;
-    color: #213547;
-  }
-}
+  .cy-menu-list {
+    .cy-menu-item {
+      list-style: none;
+      color: var(--cy-text-color);
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+      .cy-menu-item-box {
+        padding: 0;
+      }
+    }
   }
 }

@@ -15,3 +15,15 @@ export const renderSlot = (slot: SlotRender):SlotRender => {
     return () => _slot
   }
 }
+
+// 格式化列表数据
+export const formatMenuData = (list: any[] = [], level: number = 0, child: string = 'children'):any[] => {
+  const result: any[] = []
+  if (!list || list.length < 1) return []
+  list.forEach(menu => {
+    const _menu = Object.assign(menu, { level })
+    if (menu[child]) _menu[child] = formatMenuData(menu[child], level + 1)
+    result.push(_menu)
+  })
+  return result
+}

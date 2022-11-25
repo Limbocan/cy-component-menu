@@ -1,3 +1,4 @@
+
 import { RenderMenuList } from './menu-list'
 
 export const RenderMenuItem = (props) => {
@@ -6,12 +7,18 @@ export const RenderMenuItem = (props) => {
   
   return (
     <>
-      <li className="cy-menu-item">
-        <span className="cy-menu-item-label">{props.data.title}</span>
+      <li class="cy-menu-item">
+        <div class="cy-menu-item-box">
+          <div class="cy-menu-item-label">{props.data.title}</div>
+        </div>
+        {
+          childList ? (
+            <div class="cy-menu-item-child-list">
+              <RenderMenuList list={props.data.children} level={props.level + 1}></RenderMenuList>
+            </div>
+          ) : null
+        }
       </li>
-      {
-        childList ? <RenderMenuList list={props.data.children}></RenderMenuList> : null
-      }
     </>
   )
 }
