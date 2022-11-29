@@ -1,4 +1,3 @@
-import init from "src/main"
 
 export interface Props {
   data: Array

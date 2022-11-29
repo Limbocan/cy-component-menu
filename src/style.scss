@@ -1,14 +1,49 @@
 .cy-menu {
   --cy-text-color: #213547;
 
+  height: var(--cy-menu-height);
+  width: var(--cy-menu-width);
+  contain: content;
+
+  .cy-menu-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+  }
+
   .cy-menu-list {
+    width: 100%;
+
     .cy-menu-item {
       list-style: none;
       color: var(--cy-text-color);
 
       .cy-menu-item-box {
         padding: 0;
+        cursor: pointer;
+      }
+
+      .cy-menu-item-box+.cy-menu-item-child-list {
+        max-height: 0;
+        transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+        overflow: hidden;
+      }
+
+      .cy-menu-item-box+.cy-menu-item-child-list-open {
+        max-height: 100vh;
+        transition: max-height 1s ease-in-out;
       }
     }
+
+    &.cy-menu-content-list {
+      overflow: hidden;
+    }
+  }
+
+  .cy-menu-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
   }
 }

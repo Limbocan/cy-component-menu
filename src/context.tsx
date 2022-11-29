@@ -12,25 +12,25 @@ export function AppProvider(propsData) {
   const [expand, updateExpand] = createSignal(propsData.props.expand || true)
   // 菜单列表数据↓
   const [data, updateData] = createSignal(propsData.props.data || [])
-  // 菜单文字prop
+  // 菜单文字prop↓
   const [labelProp, updateLabelProp] = createSignal(propsData.props.labelProp || 'label')
-  // 菜单唯一值prop
+  // 菜单唯一值prop↓
   const [keyProp, updateKeyProp] = createSignal(propsData.props.keyProp || 'key')
-  // 子菜单prop
+  // 子菜单prop↓
   const [childProp, updateChildProp] = createSignal(propsData.props.childProp || 'children')
+  // 菜单打开项列表↓
+  const [openKeys, updateOpenKeys] = createSignal(propsData.props.openKeys || [])
+  // 菜单高度
+  const [height, updateHeight] = createSignal(propsData.props.height || '100%')
+  // 菜单宽度
+  const [width, updateWidth] = createSignal(propsData.props.width || '240px')
 
   // 设置数据
   updateData(() => [...formatMenuData(data(), 0, childProp())])
 
   const state = {
-    headerSlot: {
-      value: headerSlot,
-      change: updateHeaderSlot
-    },
-    footerSlot: {
-      value: footerSlot,
-      change: updatefooterSlot
-    },
+    headerSlot: { value: headerSlot, change: updateHeaderSlot },
+    footerSlot: { value: footerSlot, change: updatefooterSlot },
     expand: {
       value: expand,
       change: (val) => val === true ? updateExpand(val) : val === false ? updateExpand(val) : updateExpand(!expand)
@@ -42,18 +42,12 @@ export function AppProvider(propsData) {
         updateData(() => [..._list])
       }
     },
-    labelProp: {
-      value: labelProp(),
-      change: updateLabelProp
-    },
-    keyProp: {
-      value: keyProp,
-      change: updateKeyProp
-    },
-    childProp: {
-      value: childProp,
-      change: updateChildProp
-    }
+    labelProp: { value: labelProp, change: updateLabelProp },
+    keyProp: { value: keyProp, change: updateKeyProp },
+    childProp: { value: childProp, change: updateChildProp },
+    openKeys: { value: openKeys, change: updateOpenKeys },
+    height: { value: height, change: updateHeight },
+    width: { value: width, change: updateWidth },
   }
 
   // 添加属性update方法

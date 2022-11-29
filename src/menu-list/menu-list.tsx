@@ -6,7 +6,10 @@ import { RenderMenuItem } from './menu-item'
 export const RenderMenuList = (props) => {
 
   return (
-    <ul class="cy-menu-list" data-level={props.level}>
+    <ul
+      class={`cy-menu-list ${props.isContent ? 'cy-menu-content-list' : ''}`}
+      data-level={props.level}
+    >
       <For
         each={props.list}
         children={<></>}
