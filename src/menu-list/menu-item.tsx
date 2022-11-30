@@ -4,7 +4,7 @@ import { useAppContext } from '../context'
 
 export const RenderMenuItem = (props) => {
 
-  const { openKeys, keyProp, labelProp } = useAppContext() as any
+  const { openKeys, keyProp, labelProp, scrollInstance } = useAppContext() as any
   const childList = props.data.children && props.data.children.length > 0 ? props.data.children : null
 
   // 修改菜单子列表展开状态
@@ -15,6 +15,7 @@ export const RenderMenuItem = (props) => {
     const _index = _keys.findIndex(item => item === _key)
     _index > -1 ? _keys.splice(_index, 1) : _keys.push(_key)
     openKeys.change(() => [..._keys])
+    _index > -1 && scrollInstance.value().hiddenBar()
   }
   
   return (

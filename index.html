@@ -12,7 +12,7 @@
       box-sizing: border-box;
     }
     #app {
-      height: 120px;
+      height: 300px;
     }
   </style>
 </head>
@@ -34,6 +34,7 @@
       name: 'test-components',
       expand: true,
       labelProp: 'title',
+      footerHeight: '0',
       data: [
         {
           title: '标题1',
@@ -74,6 +75,24 @@
         {
           title: '标题3',
           key: 3,
+        },
+        {
+          title: '标题4',
+          key: 4,
+          children: [
+            { title: '标题4-1-1', key: 411 },
+            { title: '标题4-1-2', key: 412 },
+            { title: '标题4-1-3', key: 413 },
+            { title: '标题4-1-4', key: 414 },
+          ]
+        },
+        {
+          title: '标题5',
+          key: 5,
+        },
+        {
+          title: '标题6',
+          key: 6,
         }
       ]
     }
@@ -85,7 +104,15 @@
           console.log(renderInstance, '====')
         }
         return header
-      }
+      },
+      footerSlot: (val) => {
+        const footer = document.createElement('div')
+        footer.innerHTML = 'slot-footer' + val
+        footer.onclick = () => {
+          console.log(renderInstance, '====')
+        }
+        return footer
+      },
     })
     // const componentInstance = init('my-menu', props, {})
 

@@ -8,6 +8,10 @@ export function AppProvider(propsData) {
   const [headerSlot, updateHeaderSlot] = createSignal(propsData.slots.headerSlot || null)
   // 尾部插槽↓
   const [footerSlot, updatefooterSlot] = createSignal(propsData.slots.footerSlot || null)
+  // 尾部插槽高度↓
+  const [footerHeight, updateFooterHeight] = createSignal(propsData.props.footerHeight || '0')
+  // 滚动实例
+  const [scrollInstance, updateScroll] = createSignal({})
   // 菜单展开↓
   const [expand, updateExpand] = createSignal(propsData.props.expand || true)
   // 菜单列表数据↓
@@ -31,6 +35,8 @@ export function AppProvider(propsData) {
   const state = {
     headerSlot: { value: headerSlot, change: updateHeaderSlot },
     footerSlot: { value: footerSlot, change: updatefooterSlot },
+    footerHeight: { value: footerHeight, change: updateFooterHeight },
+    scrollInstance: { value: scrollInstance, change: updateScroll },
     expand: {
       value: expand,
       change: (val) => val === true ? updateExpand(val) : val === false ? updateExpand(val) : updateExpand(!expand)

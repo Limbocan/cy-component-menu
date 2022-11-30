@@ -18,10 +18,17 @@
     .cy-menu-item {
       list-style: none;
       color: var(--cy-text-color);
+      user-select: none;
 
       .cy-menu-item-box {
         padding: 0;
         cursor: pointer;
+
+        .cy-menu-item-label {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
 
       .cy-menu-item-box+.cy-menu-item-child-list {
@@ -39,11 +46,25 @@
     &.cy-menu-content-list {
       overflow: hidden;
     }
+
+    &[data-level="0"] {
+      padding-bottom: var(--cy-menu-footer-height);
+    }
   }
 
   .cy-menu-footer {
-    position: sticky;
+    position: absolute;
     bottom: 0;
     left: 0;
+    height: var(--cy-menu-footer-height);
+    line-height: var(--cy-menu-footer-height);
+    background-color: #fff;
+  }
+
+  .cy-menu-header, .cy-menu-footer {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
