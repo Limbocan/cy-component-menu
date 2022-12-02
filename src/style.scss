@@ -1,15 +1,17 @@
 .cy-menu {
+  --cy-menu-bg-color: #fff;
   --cy-text-color: #213547;
 
   height: var(--cy-menu-height);
   width: var(--cy-menu-width);
-  contain: content;
+  background-color: var(--cy-menu-bg-color);
+  contain: style;
 
   .cy-menu-header {
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #fff;
+    background-color: var(--cy-menu-bg-color);
   }
 
   .cy-menu-list {
@@ -41,6 +43,11 @@
         max-height: 100vh;
         transition: max-height 1s ease-in-out;
       }
+
+      .cy-menu-item-popover {
+        position: fixed;
+        left: 50%;
+      }
     }
 
     &.cy-menu-content-list {
@@ -58,10 +65,11 @@
     left: 0;
     height: var(--cy-menu-footer-height);
     line-height: var(--cy-menu-footer-height);
-    background-color: #fff;
+    background-color: var(--cy-menu-bg-color);
   }
 
-  .cy-menu-header, .cy-menu-footer {
+  .cy-menu-header,
+  .cy-menu-footer {
     width: 100%;
     white-space: nowrap;
     text-overflow: ellipsis;

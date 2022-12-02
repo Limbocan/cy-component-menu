@@ -12,7 +12,8 @@
       box-sizing: border-box;
     }
     #app {
-      height: 300px;
+      height: 100vh;
+      float: left;
     }
   </style>
 </head>
@@ -23,9 +24,11 @@
     <!-- <hr> -->
     <!-- <my-menu></my-menu> -->
     <!-- <button @click="changeClick()">Vue</button> -->
+    <div class="tools">
+      <button onclick="changeClick()">修改</button>
+    </div>
   </div>
 
-  <button onclick="changeClick()">修改</button>
 
   <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
   <script type="module">

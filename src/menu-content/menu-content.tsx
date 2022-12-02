@@ -9,7 +9,7 @@ import '../plugins/simple-scrollbar.scss'
 export const RenderMenuContent = () => {
 
   const { headerSlot, footerSlot, expand, data, height, width, footerHeight, scrollInstance } = useAppContext() as any
-  let APP_DOM = document.createElement('div', {})
+  let APP_DOM = {} as Element
 
   onMount(() => {
     const scroll = SimpleScrollbar()
