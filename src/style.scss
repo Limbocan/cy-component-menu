@@ -46,7 +46,8 @@
 
       .cy-menu-item-popover {
         position: fixed;
-        left: 50%;
+        left: var(--cy-menu-x, 0);
+        top: var(--cy-menu-y, 0);
       }
     }
 

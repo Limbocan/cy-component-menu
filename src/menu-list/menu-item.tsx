@@ -22,14 +22,16 @@ export const RenderMenuItem = (props) => {
 
   // 修改popover展示
   const changePopover = (val, e) => {
-    console.log(e, '====')
     if (!popoverDom) return
-    popoverDom.updatePopover(val)
+    popoverDom.changePopover(val)
+    popoverDom.setMouseEvent(e, val ? 'enter' : 'leave')
   }
   
   return (
     <>
-      <li class="cy-menu-item">
+      <li
+        class="cy-menu-item"
+      >
         <div
           class="cy-menu-item-box"
           onclick={() => changeOpen(props.data)}
@@ -49,6 +51,7 @@ export const RenderMenuItem = (props) => {
         <RenderMenuPopover
           ref={popoverDom}
           name={props.data[labelProp.value()]}
+          disabled={props.level > 0}
         >
         </RenderMenuPopover>
       </li>
