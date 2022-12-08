@@ -139,6 +139,10 @@ export default function (w: any = window, d = document) {
     hiddenBar: function () {
       var _this = this
       _this.bar.classList.add('cy-menu-hidden')
+    },
+    getBar: function () {
+      var _this = this
+      return _this.bar
     }
   }
 

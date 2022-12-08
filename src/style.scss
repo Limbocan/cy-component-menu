@@ -1,11 +1,14 @@
 .cy-menu {
   --cy-menu-bg-color: #fff;
   --cy-text-color: #213547;
+  --cy-menu-min-width: 40px;
 
   height: var(--cy-menu-height);
   width: var(--cy-menu-width);
   background-color: var(--cy-menu-bg-color);
+  box-shadow: 0 0 40px #00000008;
   contain: style;
+  transition: width .5s ease-in-out;
 
   .cy-menu-header {
     position: sticky;
@@ -23,8 +26,12 @@
       user-select: none;
 
       .cy-menu-item-box {
-        padding: 0;
+        padding: 4px 12px;
         cursor: pointer;
+
+        &:hover {
+          background-color: #f9f8fb;
+        }
 
         .cy-menu-item-label {
           overflow: hidden;
@@ -57,6 +64,25 @@
 
     &[data-level="0"] {
       padding-bottom: var(--cy-menu-footer-height);
+
+      &>.cy-menu-item[data-level="0"] {
+        padding: 8px 0;
+        margin: 0 16px;
+        transition: margin .5s ease-in-out;
+
+        &>.cy-menu-item-box {
+          padding: 12px 0;
+          border-radius: 4px;
+
+          &>.cy-menu-item-label {
+            font-weight: bolder;
+          }
+        }
+      }
+
+      .cy-menu-item[data-level="0"]+.cy-menu-item[data-level="0"] {
+        border-top: 1px solid #f9f8fb;
+      }
     }
   }
 
@@ -75,5 +101,16 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+  }
+
+  // 菜单收起样式
+  &.cy-menu-shrink {
+    width: var(--cy-menu-min-width);
+
+    .cy-menu-list[data-level="0"] {
+      &>.cy-menu-item[data-level="0"] {
+        margin: 0;
+      }
+    }
   }
 }

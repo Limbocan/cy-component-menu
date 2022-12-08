@@ -26,6 +26,7 @@
     <!-- <button @click="changeClick()">Vue</button> -->
     <div class="tools">
       <button onclick="changeClick()">修改</button>
+      <button onclick="expandClick()">切换</button>
     </div>
   </div>
 
@@ -100,22 +101,22 @@
       ]
     }
     const renderInstance = renderApp('#app', props, {
-      headerSlot: (val) => {
-        const header = document.createElement('div')
-        header.innerHTML = 'slot-header' + val
-        header.onclick = () => {
-          console.log(renderInstance, '====')
-        }
-        return header
-      },
-      footerSlot: (val) => {
-        const footer = document.createElement('div')
-        footer.innerHTML = 'slot-footer' + val
-        footer.onclick = () => {
-          console.log(renderInstance, '====')
-        }
-        return footer
-      },
+      // headerSlot: (val) => {
+      //   const header = document.createElement('div')
+      //   header.innerHTML = 'slot-header' + val
+      //   header.onclick = () => {
+      //     console.log(renderInstance, '====')
+      //   }
+      //   return header
+      // },
+      // footerSlot: (val) => {
+      //   const footer = document.createElement('div')
+      //   footer.innerHTML = 'slot-footer' + val
+      //   footer.onclick = () => {
+      //     console.log(renderInstance, '====')
+      //   }
+      //   return footer
+      // },
     })
     // const componentInstance = init('my-menu', props, {})
 
@@ -124,6 +125,11 @@
       renderInstance.updateData([
         { title: '标题3' }
       ])
+    }
+
+    window.expandClick = () => {
+      const value = renderInstance.getExpand()
+      renderInstance.updateExpand(!value)
     }
 
       // const { createApp } = Vue

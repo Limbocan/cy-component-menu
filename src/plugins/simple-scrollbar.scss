@@ -11,7 +11,7 @@
     width: calc(100% + 18px);
     padding: 0 0 0 0;
     // position: relative;
-    overflow: auto;
+    overflow-y: scroll;
     box-sizing: border-box;
 
     &.rtl {
@@ -34,7 +34,8 @@
 }
 
 .cy-menu-hidden {
-  display: none;
+  background-color: transparent;
+  pointer-events: none;
 }
 
 .cy-menu-container:hover .cy-menu-scroll,

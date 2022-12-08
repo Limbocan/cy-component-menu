@@ -31,6 +31,7 @@ export const RenderMenuItem = (props) => {
     <>
       <li
         class="cy-menu-item"
+        data-level={props.level}
       >
         <div
           class="cy-menu-item-box"
@@ -38,7 +39,9 @@ export const RenderMenuItem = (props) => {
           onmouseenter={(e) => changePopover(true, e)}
           onmouseleave={(e) => changePopover(false, e)}
         >
+          <div className="cy-menu-item-icon"></div>
           <div class="cy-menu-item-label">{props.data[labelProp.value()]}</div>
+          <div className="cy-menu-item-arrow"></div>
         </div>
         {
           childList ? (

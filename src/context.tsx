@@ -28,6 +28,8 @@ export function AppProvider(propsData) {
   const [height, updateHeight] = createSignal(propsData.props.height || '100%')
   // 菜单宽度
   const [width, updateWidth] = createSignal(propsData.props.width || '240px')
+  // 菜单收起宽度
+  // const [minWidth, updateMinWidth] = createSignal(propsData.props.minWidth || '40px')
 
   // 设置数据
   updateData(() => [...formatMenuData(data(), 0, childProp())])
@@ -54,12 +56,14 @@ export function AppProvider(propsData) {
     openKeys: { value: openKeys, change: updateOpenKeys },
     height: { value: height, change: updateHeight },
     width: { value: width, change: updateWidth },
+    // minWidth: { value: minWidth, change: updateMinWidth },
   }
 
   // 添加属性update方法
   Object.keys(state).forEach(item => {
     const updateName = item.slice(0, 1).toLocaleUpperCase() + item.slice(1)
     propsData.methods[`update${updateName}`] = state[item].change
+    propsData.methods[`get${updateName}`] = state[item].value
   })
 
   return (

@@ -1,5 +1,5 @@
 
-import { onMount } from 'solid-js'
+import { onMount, onCleanup } from 'solid-js'
 import { renderSlot } from '../utils'
 import { useAppContext } from '../context'
 import { RenderMenuList } from '../menu-list/menu-list'
@@ -8,13 +8,33 @@ import '../plugins/simple-scrollbar.scss'
 
 export const RenderMenuContent = () => {
 
-  const { headerSlot, footerSlot, expand, data, height, width, footerHeight, scrollInstance } = useAppContext() as any
+  const {
+    headerSlot,
+    footerSlot,
+    expand,
+    data,
+    height,
+    width,
+    footerHeight,
+    scrollInstance
+  } = useAppContext() as any
   let APP_DOM = {} as Element
+  let resizeObserver = {} as ResizeObserver
+  const scroll = SimpleScrollbar()
 
   onMount(() => {
-    const scroll = SimpleScrollbar()
     const scrollInstace = scroll.initEl(APP_DOM)
     scrollInstance.change(() => scrollInstace)
+    resizeObserver = new ResizeObserver(() => {
+      const _SCROLL = scrollInstace.getBar()
+      _SCROLL.classList.add('cy-menu-hidden')
+    })
+    resizeObserver.observe(APP_DOM)
+  })
+
+  onCleanup(() => {
+    resizeObserver.disconnect()
+    scroll.unbindEl(APP_DOM)
   })
 
   return (
@@ -22,7 +42,7 @@ export const RenderMenuContent = () => {
       {/* {slots.needStyle ? <style>{slots.style.default}</style> : null} */}
       <div
         ref={APP_DOM}
-        class={`cy-menu ${expand.value() ? 'cy-menu-expand' : 'cy-menu-shrink'}`}
+        class={`cy-menu cy-menu-container ${expand.value() ? 'cy-menu-expand' : 'cy-menu-shrink'}`}
         style={
           {
             '--cy-menu-height': height.value(),
