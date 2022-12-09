@@ -8,6 +8,10 @@ export function AppProvider(propsData) {
   const [headerSlot, updateHeaderSlot] = createSignal(propsData.slots.headerSlot || null)
   // 尾部插槽↓
   const [footerSlot, updatefooterSlot] = createSignal(propsData.slots.footerSlot || null)
+  // 菜单项插槽↓
+  const [menuSlot, updateMenuSlot] = createSignal(propsData.slots.menuSlot || null)
+  // 菜单图标插槽↓
+  const [menuIconSlot, updateMenuIconSlot] = createSignal(propsData.slots.menuIconSlot || null)
   // 尾部插槽高度↓
   const [footerHeight, updateFooterHeight] = createSignal(propsData.props.footerHeight || '0')
   // 滚动实例
@@ -37,6 +41,8 @@ export function AppProvider(propsData) {
   const state = {
     headerSlot: { value: headerSlot, change: updateHeaderSlot },
     footerSlot: { value: footerSlot, change: updatefooterSlot },
+    menuSlot: { value: menuSlot, change: updateMenuSlot },
+    menuIconSlot: { value: menuIconSlot, change: updateMenuIconSlot },
     footerHeight: { value: footerHeight, change: updateFooterHeight },
     scrollInstance: { value: scrollInstance, change: updateScroll },
     expand: {

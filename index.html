@@ -101,14 +101,14 @@
       ]
     }
     const renderInstance = renderApp('#app', props, {
-      // headerSlot: (val) => {
-      //   const header = document.createElement('div')
-      //   header.innerHTML = 'slot-header' + val
-      //   header.onclick = () => {
-      //     console.log(renderInstance, '====')
-      //   }
-      //   return header
-      // },
+      headerSlot: (val) => {
+        // const header = document.createElement('div')
+        // header.innerHTML = 'slot-header' + val
+        // header.onclick = () => {
+        //   console.log(renderInstance, '====')
+        // }
+        // return header
+      },
       // footerSlot: (val) => {
       //   const footer = document.createElement('div')
       //   footer.innerHTML = 'slot-footer' + val

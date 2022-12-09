@@ -1,11 +1,19 @@
 
 import { RenderMenuList } from './menu-list'
 import { useAppContext } from '../context'
+import { renderSlot } from '../utils'
 import { RenderMenuPopover } from '../menu-popover/menu-popover'
 
 export const RenderMenuItem = (props) => {
 
-  const { openKeys, keyProp, labelProp, childProp, scrollInstance } = useAppContext() as any
+  const {
+    openKeys,
+    keyProp,
+    labelProp,
+    childProp,
+    scrollInstance,
+    menuSlot,
+  } = useAppContext() as any
   const childList = props.data.children && props.data.children.length > 0 ? props.data.children : null
   let popoverDom = null as any
 
@@ -39,9 +47,16 @@ export const RenderMenuItem = (props) => {
           onmouseenter={(e) => changePopover(true, e)}
           onmouseleave={(e) => changePopover(false, e)}
         >
-          <div className="cy-menu-item-icon"></div>
-          <div class="cy-menu-item-label">{props.data[labelProp.value()]}</div>
-          <div className="cy-menu-item-arrow"></div>
+          {
+            menuSlot.value() ? renderSlot(menuSlot.value())('item') :
+            (<>
+              <div className="cy-menu-item-icon">
+                
+              </div>
+              <div class="cy-menu-item-label">{props.data[labelProp.value()]}</div>
+              <div className="cy-menu-item-arrow"></div>
+            </>)
+          }
         </div>
         {
           childList ? (
