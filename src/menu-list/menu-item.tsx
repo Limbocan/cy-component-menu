@@ -13,6 +13,7 @@ export const RenderMenuItem = (props) => {
     childProp,
     scrollInstance,
     menuSlot,
+    menuIconSlot,
   } = useAppContext() as any
   const childList = props.data.children && props.data.children.length > 0 ? props.data.children : null
   let popoverDom = null as any
@@ -51,7 +52,7 @@ export const RenderMenuItem = (props) => {
             menuSlot.value() ? renderSlot(menuSlot.value())('item') :
             (<>
               <div className="cy-menu-item-icon">
-                
+                { menuIconSlot.value() ? renderSlot(menuSlot.value())('item') : '' }
               </div>
               <div class="cy-menu-item-label">{props.data[labelProp.value()]}</div>
               <div className="cy-menu-item-arrow"></div>

@@ -4,18 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    #app {
-      height: 100vh;
-      float: left;
-    }
-  </style>
+  <title>❤cy-component-menu❤</title>
+  <link rel="stylesheet" href="./docs/style.css" />
 </head>
 
 <body>
@@ -34,90 +24,8 @@
   <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
   <script type="module">
     import { renderApp } from './src/main.ts'
-    const props = {
-      name: 'test-components',
-      expand: true,
-      labelProp: 'title',
-      footerHeight: '0',
-      data: [
-        {
-          title: '标题1',
-          key: 1,
-          children: [
-            {
-              title: '标题1-1',
-              key: 11,
-            },
-            {
-              title: '标题1-2',
-              key: 12,
-              children: [
-                {
-                  title: '标题1-2-1',
-                  key: 121,
-                },
-              ]
-            },
-            {
-              title: '标题1-3',
-              key: 13,
-            },
-            {
-              title: '标题1-4',
-              key: 14,
-            },
-            {
-              title: '标题1-5',
-              key: 15,
-            }
-          ]
-        },
-        {
-          title: '标题2',
-          key: 2,
-        },
-        {
-          title: '标题3',
-          key: 3,
-        },
-        {
-          title: '标题4',
-          key: 4,
-          children: [
-            { title: '标题4-1-1', key: 411 },
-            { title: '标题4-1-2', key: 412 },
-            { title: '标题4-1-3', key: 413 },
-            { title: '标题4-1-4', key: 414 },
-          ]
-        },
-        {
-          title: '标题5',
-          key: 5,
-        },
-        {
-          title: '标题6',
-          key: 6,
-        }
-      ]
-    }
-    const renderInstance = renderApp('#app', props, {
-      headerSlot: (val) => {
-        // const header = document.createElement('div')
-        // header.innerHTML = 'slot-header' + val
-        // header.onclick = () => {
-        //   console.log(renderInstance, '====')
-        // }
-        // return header
-      },
-      // footerSlot: (val) => {
-      //   const footer = document.createElement('div')
-      //   footer.innerHTML = 'slot-footer' + val
-      //   footer.onclick = () => {
-      //     console.log(renderInstance, '====')
-      //   }
-      //   return footer
-      // },
-    })
+    import { EXAMPLE_PROPS, EXAMPLE_METHODS } from './docs/example.js'
+    const renderInstance = renderApp('#app', EXAMPLE_PROPS, EXAMPLE_METHODS)
     // const componentInstance = init('my-menu', props, {})
 
     window.changeClick = () => {
