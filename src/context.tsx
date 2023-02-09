@@ -34,6 +34,8 @@ export function AppProvider(propsData) {
   const [width, updateWidth] = createSignal(propsData.props.width || '240px')
   // 菜单收起宽度
   // const [minWidth, updateMinWidth] = createSignal(propsData.props.minWidth || '40px')
+  // 始终展示菜单提示框
+  const [alwaysPopover, updateAlwaysPopover] = createSignal(propsData.props.alwaysPopover || false)
 
   // 设置数据
   updateData(() => [...formatMenuData(data(), 0, childProp())])
@@ -63,6 +65,8 @@ export function AppProvider(propsData) {
     height: { value: height, change: updateHeight },
     width: { value: width, change: updateWidth },
     // minWidth: { value: minWidth, change: updateMinWidth },
+    alwaysPopover: { value: alwaysPopover, change: updateAlwaysPopover },
+    onMenuClick: propsData.props.onMenuClick,
   }
 
   // 添加属性update方法

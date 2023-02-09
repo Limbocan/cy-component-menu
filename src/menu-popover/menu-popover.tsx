@@ -1,5 +1,6 @@
 
 import { createSignal } from 'solid-js'
+import { RenderMenuList } from '../menu-list/menu-list'
 
 export const RenderMenuPopover = (props) => {
 
@@ -8,7 +9,7 @@ export const RenderMenuPopover = (props) => {
   // 提示框显示状态
   const [popoverShow, updatePopover] = createSignal(false)
   // 提示框位置和状态信息
-  const initGap = 12 // 提示框箭头指示位置偏移量
+  const initGap = 6 // 提示框箭头指示位置偏移量
   const [popoverInfo, updatePopoverInfo] = createSignal({
     stopClose: false,
     x: 0,
@@ -52,7 +53,6 @@ export const RenderMenuPopover = (props) => {
   // 提示框鼠标事件
   const popoverMouseEvent = (val: boolean): void => {
     if (props.disabled) return
-    updatePopoverInfo(() => ({ ...popoverInfo(), stopClose: true }))
     updatePopoverInfo(() => ({ ...popoverInfo(), stopClose: val }))
     if (!val) changePopover(false)
   }
@@ -67,13 +67,24 @@ export const RenderMenuPopover = (props) => {
       style={{
         '--cy-menu-x': setStylePx(popoverInfo().x),
         '--cy-menu-y': setStylePx(popoverInfo().y),
+        '--cy-menu-popover-gap': setStylePx(popoverInfo().gap),
       }}
       onmouseenter={() => popoverMouseEvent(true)}
       onmouseleave={() => popoverMouseEvent(false)}
     >
       {
         popoverShow() && !props.disabled ? (
-          <>{props.name}</>
+          <>
+            <div class="cy-menu-popover-arrow"></div>
+            <div class="cy-menu-popover-content">{
+              props.childList ?
+                <RenderMenuList
+                  isPopover={true}
+                  list={props.childList}
+                ></RenderMenuList>:
+                <div class="cy-menu-popover-name">{props.name}</div>
+            }</div>
+          </>
         ) : (
           <></>
         )

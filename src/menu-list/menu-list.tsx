@@ -7,8 +7,8 @@ export const RenderMenuList = (props) => {
 
   return (
     <ul
-      class={`cy-menu-list ${props.isContent ? 'cy-menu-content-list' : ''}`}
-      data-level={props.level}
+      class={`cy-menu-list ${props.isContent ? 'cy-menu-content-list' : ''} ${props.isPopover ? 'cy-menu-popover-list' : ''}`}
+      data-level={props.isPopover ? null : props.level}
     >
       <For
         each={props.list}
@@ -16,7 +16,12 @@ export const RenderMenuList = (props) => {
       >
         {
           (item) => (
-            <RenderMenuItem data={item} level={props.level}></RenderMenuItem>
+            <RenderMenuItem
+              data={item}
+              level={props.level}
+              isPopover={props.isPopover}
+            >
+            </RenderMenuItem>
           )
         }
       </For>

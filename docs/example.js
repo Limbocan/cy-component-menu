@@ -66,10 +66,13 @@ export const EXAMPLE_PROPS = {
   expand: true,
   labelProp: 'title',
   footerHeight: '0',
-  data: EXAMPLE_LIST
+  data: EXAMPLE_LIST,
+  onMenuClick: (val) => {
+    console.log(val, '菜单点击')
+  }
 }
 
-export const EXAMPLE_METHODS = {
+export const EXAMPLE_SLOTS = {
   headerSlot: (val) => {
     // const header = document.createElement('div')
     // header.innerHTML = 'slot-header' + val

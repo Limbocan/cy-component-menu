@@ -26,7 +26,12 @@
       user-select: none;
 
       .cy-menu-item-box {
-        padding: 4px 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 6px 12px;
+        transition: background .3s ease-in-out;
         cursor: pointer;
 
         &:hover {
@@ -34,9 +39,22 @@
         }
 
         .cy-menu-item-label {
+          flex: 1;
+          padding-right: 4px;
+          height: 100%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+        }
+
+        .cy-menu-item-arrow {
+          width: 20px;
+          height: 20px;
+          transition: transform .3s ease-in-out, width .2s ease-in-out;
+
+          &.cy-menu-item-arrow-expand {
+            transform: rotate(90deg);
+          }
         }
       }
 
@@ -55,6 +73,36 @@
         position: fixed;
         left: var(--cy-menu-x, 0);
         top: var(--cy-menu-y, 0);
+        padding-left: 12px;
+
+        .cy-menu-popover-arrow {
+          position: absolute;
+          left: 0;
+          top: var(--cy-menu-popover-gap);
+          border: 10px solid transparent;
+          border-right-color: var(--cy-menu-bg-color);
+          margin-left: -4px;
+        }
+
+        .cy-menu-popover-content {
+          border-radius: 2px;
+          background-color: var(--cy-menu-bg-color);
+          box-shadow: 4px 4px 8px #00000008;
+        }
+
+        .cy-menu-list {
+          .cy-menu-item-label {
+            padding-right: 6px 0;
+          }
+          .cy-menu-item-arrow {
+            width: 0;
+            height: 0;
+          }
+        }
+
+        .cy-menu-popover-name {
+          padding: 8px;
+        }
       }
     }
 
@@ -66,8 +114,8 @@
       padding-bottom: var(--cy-menu-footer-height);
 
       &>.cy-menu-item[data-level="0"] {
-        padding: 8px 0;
-        margin: 0 16px;
+        // padding: 8px 0;
+        // margin: 0 16px;
         transition: margin .5s ease-in-out;
 
         &>.cy-menu-item-box {
@@ -110,6 +158,10 @@
     .cy-menu-list[data-level="0"] {
       &>.cy-menu-item[data-level="0"] {
         margin: 0;
+
+        // & .cy-menu-item-arrow {
+        //   width: 0;
+        // }
       }
     }
   }

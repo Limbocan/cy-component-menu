@@ -24,8 +24,8 @@
   <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
   <script type="module">
     import { renderApp } from './src/main.ts'
-    import { EXAMPLE_PROPS, EXAMPLE_METHODS } from './docs/example.js'
-    const renderInstance = renderApp('#app', EXAMPLE_PROPS, EXAMPLE_METHODS)
+    import { EXAMPLE_PROPS, EXAMPLE_SLOTS } from './docs/example.js'
+    const renderInstance = renderApp('#app', EXAMPLE_PROPS, EXAMPLE_SLOTS)
     // const componentInstance = init('my-menu', props, {})
 
     window.changeClick = () => {
