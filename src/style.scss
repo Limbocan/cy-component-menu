@@ -1,7 +1,9 @@
 .cy-menu {
   --cy-menu-bg-color: #fff;
   --cy-text-color: #213547;
+  --cy-text-active-color: #248afd;
   --cy-menu-min-width: 40px;
+  --cy-menu-active-background-color: #e7e7e7;
 
   height: var(--cy-menu-height);
   width: var(--cy-menu-width);
@@ -9,6 +11,7 @@
   box-shadow: 0 0 40px #00000008;
   contain: style;
   transition: width .5s ease-in-out;
+  overflow: auto;
 
   .cy-menu-header {
     position: sticky;
@@ -23,7 +26,12 @@
     .cy-menu-item {
       list-style: none;
       color: var(--cy-text-color);
+      transition: color .2s ease-in-out;
       user-select: none;
+
+      &.cy-menu-item-active {
+        color: var(--cy-text-active-color);
+      }
 
       .cy-menu-item-box {
         display: flex;
@@ -31,11 +39,12 @@
         justify-content: space-around;
         align-items: center;
         padding: 6px 12px;
-        transition: background .3s ease-in-out;
+        transition: background .2s ease-in-out, color .2s ease-in-out;
         cursor: pointer;
 
         &:hover {
-          background-color: #f9f8fb;
+          color: var(--cy-text-active-color);
+          background-color: var(--cy-menu-active-background-color);
         }
 
         .cy-menu-item-label {
@@ -51,8 +60,10 @@
           width: 20px;
           height: 20px;
           transition: transform .3s ease-in-out, width .2s ease-in-out;
+        }
 
-          &.cy-menu-item-arrow-expand {
+        &.cy-menu-item-box-expand {
+          &>.cy-menu-item-arrow {
             transform: rotate(90deg);
           }
         }
@@ -60,13 +71,13 @@
 
       .cy-menu-item-box+.cy-menu-item-child-list {
         max-height: 0;
-        transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+        transition: max-height .5s cubic-bezier(0, 1, 0, 1);
         overflow: hidden;
       }
 
       .cy-menu-item-box+.cy-menu-item-child-list-open {
         max-height: 100vh;
-        transition: max-height 1s ease-in-out;
+        transition: max-height .5s ease-in-out;
       }
 
       .cy-menu-item-popover {
@@ -94,6 +105,7 @@
           .cy-menu-item-label {
             padding-right: 6px 0;
           }
+
           .cy-menu-item-arrow {
             width: 0;
             height: 0;
@@ -114,13 +126,10 @@
       padding-bottom: var(--cy-menu-footer-height);
 
       &>.cy-menu-item[data-level="0"] {
-        // padding: 8px 0;
-        // margin: 0 16px;
         transition: margin .5s ease-in-out;
 
         &>.cy-menu-item-box {
-          padding: 12px 0;
-          border-radius: 4px;
+          padding: 12px 8px;
 
           &>.cy-menu-item-label {
             font-weight: bolder;
@@ -162,6 +171,79 @@
         // & .cy-menu-item-arrow {
         //   width: 0;
         // }
+      }
+    }
+  }
+
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #c1c1c1;
+
+    &:hover {
+      background-color: #a8a8a8;
+    }
+
+    &:active {
+      background-color: #787878;
+    }
+  }
+
+  & {
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #eee;
+  }
+}
+
+.cy-menu.cy-menu-theme-blue {
+
+  .cy-menu-list {
+    &[data-level="0"] {
+
+      &>.cy-menu-item[data-level="0"] {
+        padding: 4px 0;
+        margin: 0 12px;
+
+        &>.cy-menu-item-box {
+          padding: 12px 8px;
+          border-radius: 8px;
+
+          &.cy-menu-item-box-expand {
+            background-color: var(--cy-menu-active-background-color);
+          }
+        }
+
+        &>.cy-menu-item-child-list {
+          position: relative;
+          border-radius: 0 0 8px 8px;
+          background-color: var(--cy-menu-active-background-color);
+          box-shadow: 0 -8px 0 var(--cy-menu-active-background-color);
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background-color: var(--cy-menu-active-background-color);
+          }
+        }
+      }
+    }
+  }
+
+  // 菜单收起样式
+  &.cy-menu-shrink {
+
+    .cy-menu-list[data-level="0"] {
+      &>.cy-menu-item[data-level="0"] {
+        margin: 0;
       }
     }
   }

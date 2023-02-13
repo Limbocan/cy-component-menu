@@ -67,6 +67,7 @@ export const EXAMPLE_PROPS = {
   labelProp: 'title',
   footerHeight: '0',
   data: EXAMPLE_LIST,
+  alwaysPopover: false,
   onMenuClick: (val) => {
     console.log(val, '菜单点击')
   }

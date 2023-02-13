@@ -12,12 +12,16 @@ export function AppProvider(propsData) {
   const [menuSlot, updateMenuSlot] = createSignal(propsData.slots.menuSlot || null)
   // 菜单图标插槽↓
   const [menuIconSlot, updateMenuIconSlot] = createSignal(propsData.slots.menuIconSlot || null)
+  // 活跃菜单项↓
+  const [activeMenu, updateActiveMenu] = createSignal(propsData.props.activeMenu || null)
   // 尾部插槽高度↓
   const [footerHeight, updateFooterHeight] = createSignal(propsData.props.footerHeight || '0')
   // 滚动实例
   const [scrollInstance, updateScroll] = createSignal({})
   // 菜单展开↓
   const [expand, updateExpand] = createSignal(propsData.props.expand || true)
+  // 保持同级唯一一个子菜单展开↓
+  const [unique, updateUnique] = createSignal(propsData.props.unique || true)
   // 菜单列表数据↓
   const [data, updateData] = createSignal(propsData.props.data || [])
   // 菜单文字prop↓
@@ -28,6 +32,8 @@ export function AppProvider(propsData) {
   const [childProp, updateChildProp] = createSignal(propsData.props.childProp || 'children')
   // 菜单打开项列表↓
   const [openKeys, updateOpenKeys] = createSignal(propsData.props.openKeys || [])
+  // 菜单打开项详细信息↓
+  const [openMenus, updateOpenMenus] = createSignal([])
   // 菜单高度
   const [height, updateHeight] = createSignal(propsData.props.height || '100%')
   // 菜单宽度
@@ -45,12 +51,14 @@ export function AppProvider(propsData) {
     footerSlot: { value: footerSlot, change: updatefooterSlot },
     menuSlot: { value: menuSlot, change: updateMenuSlot },
     menuIconSlot: { value: menuIconSlot, change: updateMenuIconSlot },
+    activeMenu: { value: activeMenu, change: updateActiveMenu },
     footerHeight: { value: footerHeight, change: updateFooterHeight },
     scrollInstance: { value: scrollInstance, change: updateScroll },
     expand: {
       value: expand,
       change: (val) => val === true ? updateExpand(val) : val === false ? updateExpand(val) : updateExpand(!expand)
     },
+    unique: { value: unique, change: updateUnique },
     data: {
       value: data,
       change: (list) => {
@@ -62,6 +70,7 @@ export function AppProvider(propsData) {
     keyProp: { value: keyProp, change: updateKeyProp },
     childProp: { value: childProp, change: updateChildProp },
     openKeys: { value: openKeys, change: updateOpenKeys },
+    openMenus: { value: openMenus, change: updateOpenMenus },
     height: { value: height, change: updateHeight },
     width: { value: width, change: updateWidth },
     // minWidth: { value: minWidth, change: updateMinWidth },

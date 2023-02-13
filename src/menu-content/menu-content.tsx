@@ -1,10 +1,10 @@
 
-import { onMount, onCleanup } from 'solid-js'
+// import { onMount, onCleanup } from 'solid-js'
 import { renderSlot } from '../utils'
 import { useAppContext } from '../context'
 import { RenderMenuList } from '../menu-list/menu-list'
-import SimpleScrollbar from '../plugins/simple-scrollbar.js'
-import '../plugins/simple-scrollbar.scss'
+// import SimpleScrollbar from '../plugins/simple-scrollbar.js'
+// import '../plugins/simple-scrollbar.scss'
 
 export const RenderMenuContent = () => {
 
@@ -16,33 +16,32 @@ export const RenderMenuContent = () => {
     height,
     width,
     footerHeight,
-    scrollInstance
   } = useAppContext() as any
   let APP_DOM = {} as Element
-  let resizeObserver = {} as ResizeObserver
-  const scroll = SimpleScrollbar()
+  // let resizeObserver = {} as ResizeObserver
+  // const scroll = SimpleScrollbar()
 
-  onMount(() => {
-    const scrollInstace = scroll.initEl(APP_DOM)
-    scrollInstance.change(() => scrollInstace)
-    resizeObserver = new ResizeObserver(() => {
-      const _SCROLL = scrollInstace.getBar()
-      _SCROLL.classList.add('cy-menu-hidden')
-    })
-    resizeObserver.observe(APP_DOM)
-  })
+  // onMount(() => {
+  //   const scrollInstace = scroll.initEl(APP_DOM)
+  //   scrollInstance.change(() => scrollInstace)
+  //   resizeObserver = new ResizeObserver(() => {
+  //     const _SCROLL = scrollInstace.getBar()
+  //     _SCROLL.classList.add('cy-menu-hidden')
+  //   })
+  //   resizeObserver.observe(APP_DOM)
+  // })
 
-  onCleanup(() => {
-    resizeObserver.disconnect()
-    scroll.unbindEl(APP_DOM)
-  })
+  // onCleanup(() => {
+  //   resizeObserver.disconnect()
+  //   scroll.unbindEl(APP_DOM)
+  // })
 
   return (
     <>
       {/* {slots.needStyle ? <style>{slots.style.default}</style> : null} */}
       <div
         ref={APP_DOM}
-        class={`cy-menu cy-menu-container ${expand.value() ? 'cy-menu-expand' : 'cy-menu-shrink'}`}
+        class={`cy-menu cy-menu-container ${expand.value() ? 'cy-menu-expand' : 'cy-menu-shrink'} cy-menu-theme-blue`}
         style={
           {
             '--cy-menu-height': height.value(),
