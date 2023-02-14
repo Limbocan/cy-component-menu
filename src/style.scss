@@ -1,5 +1,5 @@
 .cy-menu {
-  --cy-menu-bg-color: #fff;
+  --cy-menu-bg-color: #ededed;
   --cy-text-color: #213547;
   --cy-text-active-color: #248afd;
   --cy-menu-min-width: 40px;
@@ -235,6 +235,10 @@
           }
         }
       }
+    }
+
+    .cy-menu-item[data-level="0"]+.cy-menu-item[data-level="0"] {
+      border-top: none;
     }
   }
 

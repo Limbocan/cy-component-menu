@@ -11,6 +11,7 @@ export const RenderMenuItem = (props) => {
     unique,
     openKeys,
     openMenus,
+    activeList,
     activeMenu,
     keyProp,
     labelProp,
@@ -26,23 +27,31 @@ export const RenderMenuItem = (props) => {
   // 修改菜单子列表展开状态
   const changeOpen = (val) => {
     onMenuClick(val)
-    if (!childList) activeMenu.change(() => activeMenu.value() instanceof Object ? val : val[keyProp.value()])
+    if (!childList) {
+      activeMenu.change(() => activeMenu.value() instanceof Object ? val : val[keyProp.value()])
+      activeList.change(() => val.parentKeyList)
+    }
     if (!childList || props.isPopover) return
+    const _val_data = { ...val, level: props.level }
     const _key = val[keyProp.value()]
     if (unique.value()) {
-      const _is_current = openMenus.value().findIndex(menu => menu[keyProp.value()] === _key)
-      if (_is_current > -1) {
-        const _filter_data = [...openMenus.value()].filter(menu => menu[keyProp.value()] !== _key)
-        const _filter_index = [...openKeys.value()].filter(key => key !== val[keyProp.value()])
-        openMenus.change(() => _filter_data)
-        openKeys.change(() => _filter_index)
+      const _current_item = openMenus.value().find(menu => menu[keyProp.value()] === _key)
+      const _level_index = openMenus.value().findIndex(menu => menu.level === props.level)
+      // 点击打开的菜单项时关闭
+      if (_current_item) {
+        openMenus.change(() => [...openMenus.value()].filter(menu => _key !== menu[keyProp.value()]))
+        openKeys.change(() => [...openKeys.value()].filter(key => key !== val[keyProp.value()]))
         return
       }
-      const _level_index = openMenus.value().findIndex(menu => menu.level === props.level)
-      const _splice_key = _level_index > -1 ? openKeys.value().filter(key => key !== openMenus.value()[_level_index][keyProp.value()]) : openKeys.value()
-      const _splice_data = _level_index > -1 ? openMenus.value().filter(menu => menu.level !== _level_index) : openMenus.value()
-      openMenus.change(() => [..._splice_data, { ...val, level: props.level }])
-      openKeys.change(() => [..._splice_key, _key])
+      // 关闭同级其他菜单
+      if (_level_index > -1) {
+        const _del_level_item = openMenus.value()[_level_index]
+        openMenus.change(() => [_val_data].concat([...openMenus.value()].filter(menu => menu.level !== _del_level_item.level)))
+        openKeys.change(() => [_val_data[keyProp.value()]].concat(openKeys.value().filter(key => key !== _del_level_item[keyProp.value()])))
+        return
+      }
+      openMenus.change(() => [...openMenus.value(), _val_data])
+      openKeys.change(() => [...openKeys.value(), _key])
       return
     }
     const _keys = openKeys.value()
@@ -71,7 +80,8 @@ export const RenderMenuItem = (props) => {
   const getMenuActive = (val) => {
     const _key = val[keyProp.value()]
     const _active = activeMenu.value() instanceof Object ? activeMenu.value()[keyProp.value()] : activeMenu.value()
-    return _key === _active
+    console.log(_active, '====')
+    return _key === _active || activeList.value().includes(val[keyProp.value()])
   }
 
   // 判断是否能展示提示框

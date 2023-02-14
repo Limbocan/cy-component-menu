@@ -14,6 +14,8 @@ export function AppProvider(propsData) {
   const [menuIconSlot, updateMenuIconSlot] = createSignal(propsData.slots.menuIconSlot || null)
   // 活跃菜单项↓
   const [activeMenu, updateActiveMenu] = createSignal(propsData.props.activeMenu || null)
+  // 活跃菜单列表↓
+  const [activeList, updateActiveList] = createSignal([])
   // 尾部插槽高度↓
   const [footerHeight, updateFooterHeight] = createSignal(propsData.props.footerHeight || '0')
   // 滚动实例
@@ -44,7 +46,7 @@ export function AppProvider(propsData) {
   const [alwaysPopover, updateAlwaysPopover] = createSignal(propsData.props.alwaysPopover || false)
 
   // 设置数据
-  updateData(() => [...formatMenuData(data(), 0, childProp())])
+  updateData(() => [...formatMenuData(data(), 0, childProp(), keyProp())])
 
   const state = {
     headerSlot: { value: headerSlot, change: updateHeaderSlot },
@@ -52,6 +54,7 @@ export function AppProvider(propsData) {
     menuSlot: { value: menuSlot, change: updateMenuSlot },
     menuIconSlot: { value: menuIconSlot, change: updateMenuIconSlot },
     activeMenu: { value: activeMenu, change: updateActiveMenu },
+    activeList: { value: activeList, change: updateActiveList },
     footerHeight: { value: footerHeight, change: updateFooterHeight },
     scrollInstance: { value: scrollInstance, change: updateScroll },
     expand: {
@@ -62,7 +65,7 @@ export function AppProvider(propsData) {
     data: {
       value: data,
       change: (list) => {
-        const _list = formatMenuData(list)
+        const _list = formatMenuData(list, 0, childProp(), keyProp())
         updateData(() => [..._list])
       }
     },

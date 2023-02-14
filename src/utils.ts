@@ -17,12 +17,19 @@ export const renderSlot = (slot: SlotRender):SlotRender => {
 }
 
 // 格式化列表数据
-export const formatMenuData = (list: any[] = [], level: number = 0, child: string = 'children'):any[] => {
+export const formatMenuData = (
+  list: any[] = [],
+  level: number = 0,
+  child: string = 'children',
+  keyProp = 'key',
+  parentKeyList: string[] = []
+): any[] => {
   const result: any[] = []
   if (!list || list.length < 1) return []
   list.forEach(menu => {
-    const _menu = Object.assign(menu, { level })
-    if (menu[child]) _menu[child] = formatMenuData(menu[child], level + 1)
+    const _key_list = [...parentKeyList, menu[keyProp]]
+    const _menu = Object.assign(menu, { level, parentKeyList: _key_list })
+    if (menu[child]) _menu[child] = formatMenuData(menu[child], level + 1, child, keyProp, _key_list)
     result.push(_menu)
   })
   return result
