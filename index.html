@@ -29,10 +29,10 @@
     // const componentInstance = init('my-menu', props, {})
 
     window.changeClick = () => {
-      // renderInstance.change(true)
-      renderInstance.updateData([
-        { title: '标题3' }
-      ])
+      // renderInstance.updateData([
+      //   { title: '标题3' }
+      // ])
+      renderInstance.updateOpenKeys(() => [4])
     }
 
     window.expandClick = () => {

@@ -1,5 +1,5 @@
-import { createSignal, createContext, useContext } from "solid-js";
-import { formatMenuData } from './utils'
+import { createSignal, createEffect, createContext, useContext } from "solid-js";
+import { formatMenuData, getMenuItemByKey } from './utils'
 
 const AppContext = createContext() as any;
 
@@ -87,6 +87,15 @@ export function AppProvider(propsData) {
     propsData.methods[`update${updateName}`] = state[item].change
     propsData.methods[`get${updateName}`] = state[item].value
   })
+
+  // 监听openKeys同步openMenuItems
+  createEffect(
+    () => {
+      const _keys = openKeys()
+      const _items = getMenuItemByKey(state.data.value(), _keys, keyProp(), childProp()) as any
+      updateOpenMenus(() => _items)
+    }
+  )
 
   return (
     <AppContext.Provider

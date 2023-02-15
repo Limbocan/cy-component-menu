@@ -31,6 +31,9 @@
 
       &.cy-menu-item-active {
         color: var(--cy-text-active-color);
+        &>.cy-menu-item-box {
+          background-color: var(--cy-menu-active-background-color);
+        }
       }
 
       .cy-menu-item-box {

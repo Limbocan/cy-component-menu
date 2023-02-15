@@ -24,8 +24,8 @@ export const RenderMenuItem = (props) => {
   const childList = props.data.children && props.data.children.length > 0 ? props.data.children : null
   let popoverDom = null as any
 
-  // 修改菜单子列表展开状态
-  const changeOpen = (val) => {
+  // 菜单项点击事件
+  const menuItemClick = (val) => {
     onMenuClick(val)
     if (!childList) {
       activeMenu.change(() => activeMenu.value() instanceof Object ? val : val[keyProp.value()])
@@ -39,18 +39,15 @@ export const RenderMenuItem = (props) => {
       const _level_index = openMenus.value().findIndex(menu => menu.level === props.level)
       // 点击打开的菜单项时关闭
       if (_current_item) {
-        openMenus.change(() => [...openMenus.value()].filter(menu => _key !== menu[keyProp.value()]))
         openKeys.change(() => [...openKeys.value()].filter(key => key !== val[keyProp.value()]))
         return
       }
       // 关闭同级其他菜单
       if (_level_index > -1) {
         const _del_level_item = openMenus.value()[_level_index]
-        openMenus.change(() => [_val_data].concat([...openMenus.value()].filter(menu => menu.level !== _del_level_item.level)))
         openKeys.change(() => [_val_data[keyProp.value()]].concat(openKeys.value().filter(key => key !== _del_level_item[keyProp.value()])))
         return
       }
-      openMenus.change(() => [...openMenus.value(), _val_data])
       openKeys.change(() => [...openKeys.value(), _key])
       return
     }
@@ -79,8 +76,7 @@ export const RenderMenuItem = (props) => {
   // 判断活跃菜单项
   const getMenuActive = (val) => {
     const _key = val[keyProp.value()]
-    const _active = activeMenu.value() instanceof Object ? activeMenu.value()[keyProp.value()] : activeMenu.value()
-    console.log(_active, '====')
+    const _active = activeMenu.value() instanceof Object ? activeMenu.value()[keyProp.value()] : activeMenu.value() 
     return _key === _active || activeList.value().includes(val[keyProp.value()])
   }
 
@@ -106,7 +102,7 @@ export const RenderMenuItem = (props) => {
       >
         <div
           class={`cy-menu-item-box  ${getOpenStatus(props.data) ? 'cy-menu-item-box-expand' : ''}`}
-          onclick={() => changeOpen(props.data)}
+          onclick={() => menuItemClick(props.data)}
           onmouseenter={(e) => changePopover(true, e)}
           onmouseleave={(e) => changePopover(false, e)}
         >

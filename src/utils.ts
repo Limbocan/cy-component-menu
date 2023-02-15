@@ -34,3 +34,12 @@ export const formatMenuData = (
   })
   return result
 }
+
+// 根据ID获取菜单数据
+export const getMenuItemByKey = (data:any[] = [], ids:any[] = [], keyProp, childProp, result:any[] = []) => {
+  data.forEach(menu => {
+    if (ids.includes(menu[keyProp])) result.push(menu)
+    if (menu[childProp] && menu[childProp].length) getMenuItemByKey(menu[childProp], ids, keyProp, childProp, result)
+  })
+  return result
+}
