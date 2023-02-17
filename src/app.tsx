@@ -4,7 +4,11 @@ import { AppProvider } from './context'
 import { RenderMenuContent } from './menu-content/menu-content'
 import './style.scss'
 
-export default (props: Props, slots: Slots, methods: Methods) => {
+export default (
+  props: Props = { data: [], expand: false },
+  slots: Slots = {},
+  methods: Methods = {}
+) => {
 
   return (
     <AppProvider

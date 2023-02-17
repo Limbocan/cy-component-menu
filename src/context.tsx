@@ -83,9 +83,11 @@ export function AppProvider(propsData) {
 
   // 添加属性update方法
   Object.keys(state).forEach(item => {
-    const updateName = item.slice(0, 1).toLocaleUpperCase() + item.slice(1)
-    propsData.methods[`update${updateName}`] = state[item].change
-    propsData.methods[`get${updateName}`] = state[item].value
+    if (state[item] instanceof Object) {
+      const updateName = item.slice(0, 1).toLocaleUpperCase() + item.slice(1)
+      propsData.methods[`update${updateName}`] = state[item].change
+      propsData.methods[`get${updateName}`] = state[item].value
+    }
   })
 
   // 监听openKeys同步openMenuItems
