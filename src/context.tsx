@@ -18,8 +18,6 @@ export function AppProvider(propsData) {
   const [activeList, updateActiveList] = createSignal([])
   // 尾部插槽高度↓
   const [footerHeight, updateFooterHeight] = createSignal(propsData.props.footerHeight || '0')
-  // 滚动实例
-  const [scrollInstance, updateScroll] = createSignal({})
   // 菜单展开↓
   const [expand, updateExpand] = createSignal(propsData.props.expand || true)
   // 保持同级唯一一个子菜单展开↓
@@ -56,7 +54,6 @@ export function AppProvider(propsData) {
     activeMenu: { value: activeMenu, change: updateActiveMenu },
     activeList: { value: activeList, change: updateActiveList },
     footerHeight: { value: footerHeight, change: updateFooterHeight },
-    scrollInstance: { value: scrollInstance, change: updateScroll },
     expand: {
       value: expand,
       change: (val) => val === true ? updateExpand(val) : val === false ? updateExpand(val) : updateExpand(!expand)

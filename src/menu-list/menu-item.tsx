@@ -3,8 +3,15 @@ import { RenderMenuList } from './menu-list'
 import { useAppContext } from '../context'
 import { renderSlot } from '../utils'
 import { RenderMenuPopover } from '../menu-popover/menu-popover'
+import { MenuItem } from '../../index'
 
-export const RenderMenuItem = (props) => {
+interface MenuItemProps {
+  level: number
+  isPopover: boolean
+  data: MenuItem
+}
+
+export const RenderMenuItem = (props: MenuItemProps) => {
 
   const {
     expand,
@@ -25,7 +32,7 @@ export const RenderMenuItem = (props) => {
   let popoverDom = null as any
 
   // 菜单项点击事件
-  const menuItemClick = (val) => {
+  const menuItemClick = (val: MenuItem) => {
     onMenuClick(val)
     if (!childList) {
       activeMenu.change(() => activeMenu.value() instanceof Object ? val : val[keyProp.value()])

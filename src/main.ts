@@ -13,9 +13,12 @@ import './style.scss'
 // }
 
 // dom渲染
-export const renderApp: RenderApp = (el: string | Element, props: Props, slots: Slots) => {
+export const renderApp: RenderApp = (el: string | Element, props: Props, slots: Slots): Methods => {
   const methods: Methods = {}
-  const disposer = render(() => App(props, slots, methods), getElement(el) as Element)
+  const disposer = render(() => App(
+    props as Props, slots as Slots, methods as Methods),
+    getElement(el) as Element
+  )
   methods.disposer = disposer
   return methods
 }
