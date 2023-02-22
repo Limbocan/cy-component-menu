@@ -1,6 +1,6 @@
 {
   "name": "cy-menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "solidjs menu component",
   "author": "mocan",
   "license": "ISC",
@@ -13,7 +13,7 @@
     "solidjs",
     "menu"
   ],
-  "main": "./lib/cy-menu.umd.cjs",
+  "main": "./lib/cy-menu.iife.js",
   "module": "./lib/cy-menu.js",
   "types": "./index.d.ts",
   "exports": {
