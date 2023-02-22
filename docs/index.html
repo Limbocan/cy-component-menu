@@ -14,14 +14,35 @@
 <body>
   <div id="app">
     <div id="menu"></div>
-    <div class="demo-box">
-      <h1 class="demo-title">菜单方法</h1>
-      <div class="buttons-box">
-        <button class="demo-button" onclick="changeClick('add')">新增数据</button>
-        <button class="demo-button" onclick="changeClick('delete')">删除数据</button>
-        <button class="demo-button" onclick="expandClick()">切换菜单</button>
-        <button class="demo-button" onclick="themeClick()">主题样式切换</button>
-        <button class="demo-button" onclick="setOpenKeys()">设置打开项</button>
+    <div class="demo-content">
+      <header class="top-header">
+        <h2 class="header-title" onclick="titleClick()">CyMenu</h2>
+        <img src="./favicon.ico" alt="logo" class="header-logo">
+      </header>
+      <div class="demo-box">
+        <h1 class="demo-title">介绍</h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>GitHub</td>
+              <td>https://github.com/Limbocan/cyanery-menu</td>
+            </tr>
+            <tr>
+              <td>Npm</td>
+              <td>https://www.npmjs.com/package/cy-menu</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo-box">
+        <h1 class="demo-title">菜单方法</h1>
+        <div class="buttons-box">
+          <button class="demo-button" onclick="changeClick('add')">新增数据</button>
+          <button class="demo-button" onclick="changeClick('delete')">删除数据</button>
+          <button class="demo-button" onclick="expandClick()">切换菜单</button>
+          <button class="demo-button" onclick="themeClick()">主题样式切换</button>
+          <button class="demo-button" onclick="setOpenKeys()">设置打开项</button>
+        </div>
       </div>
     </div>
   </div>
@@ -55,6 +76,10 @@
 
     window.setOpenKeys = () => {
       renderInstance.updateOpenKeys([1])
+    }
+
+    window.titleClick = () => {
+      window.open("https://github.com/Limbocan/cyanery-menu")
     }
   </script>
 

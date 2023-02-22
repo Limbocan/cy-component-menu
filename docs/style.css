@@ -18,16 +18,46 @@ body {
   height: 100%;
   max-width: 240px;
 }
-#app .demo-box {
+#app .demo-content {
+  position: relative;
   flex: 1;
+}
+#app .demo-content .top-header {
+  position: static;
+  top: 0;
+  left: 0;
+  height: 64px;
+  width: 100%;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px 0 rgba(81, 109, 145, 0.1882352941);
+}
+#app .demo-content .top-header .header-title {
+  color: #3737ff;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+#app .demo-content .top-header .header-title:hover {
+  color: cyan;
+}
+#app .demo-content .top-header .header-logo {
+  width: auto;
+  height: 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#app .demo-content .demo-box {
   padding: 16px;
 }
-#app .demo-box .buttons-box {
+#app .demo-content .demo-box .buttons-box {
   display: flex;
   flex-wrap: wrap;
   padding: 12px 0;
 }
-#app .demo-box .buttons-box .demo-button + .demo-button {
+#app .demo-content .demo-box .buttons-box .demo-button + .demo-button {
   margin-left: 16px;
 }
 
@@ -59,4 +89,18 @@ body {
 }
 .demo-button:active {
   box-shadow: none;
+}
+
+table {
+  display: block;
+  border-collapse: collapse;
+  margin: 12px 0;
+  color: #6b6864;
+  overflow-x: auto;
+}
+
+table th,
+td {
+  border: 1px solid #f4f4f4;
+  padding: 0.6em 1em;
 }
