@@ -1,11 +1,17 @@
 {
   "name": "cy-menu",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "solidjs menu component",
+  "author": "mocan",
+  "license": "ISC",
   "type": "module",
   "files": [
     "lib",
     "index.d.ts"
+  ],
+  "keywords": [
+    "solidjs",
+    "menu"
   ],
   "main": "./lib/cy-menu.umd.cjs",
   "module": "./lib/cy-menu.js",
@@ -30,5 +36,13 @@
   "dependencies": {
     "solid-element": "^1.6.2",
     "solid-js": "^1.6.2"
+  },
+  "homepage": "https://limbocan.github.io/cy-component-menu/",
+  "bugs": {
+    "url": "https://github.com/Limbocan/cy-component-menu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Limbocan/cy-component-menu"
   }
 }

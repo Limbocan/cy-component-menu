@@ -14,6 +14,7 @@
   overflow: auto;
 
   .cy-menu-header {
+    z-index: 1;
     position: sticky;
     top: 0;
     left: 0;
@@ -26,7 +27,7 @@
     .cy-menu-item {
       list-style: none;
       color: var(--cy-text-color);
-      transition: color .2s ease-in-out;
+      transition: color .2s ease-in-out, margin .2s ease-in-out, padding .2s ease-in-out;
       user-select: none;
 
       &.cy-menu-item-active {
@@ -129,7 +130,6 @@
       padding-bottom: var(--cy-menu-footer-height);
 
       &>.cy-menu-item[data-level="0"] {
-        transition: margin .5s ease-in-out;
 
         &>.cy-menu-item-box {
           padding: 12px 8px;

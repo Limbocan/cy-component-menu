@@ -62,26 +62,31 @@ const EXAMPLE_LIST = [
 ]
 
 export const EXAMPLE_PROPS = {
-  name: 'test-components',
-  expand: true,
-  labelProp: 'title',
-  footerHeight: '0',
-  data: EXAMPLE_LIST,
-  alwaysPopover: false,
-  openKeys: [],
+  data: EXAMPLE_LIST, // []
+  expand: true, // true
+  activeMenu: null, // null
+  footerHeight: '0', // '0'
+  unique: true, // true
+  labelProp: 'title', // 'label'
+  keyProp: 'key', // 'key'
+  childProp: 'children', // 'children'
+  openKeys: [], // []
+  height: '100%', // '100%'
+  width: '240px', // '240px'
+  alwaysPopover: false, // false
   onMenuClick: (val) => {
-    console.log(val, '菜单点击')
+    console.log('菜单点击', val)
   }
 }
 
 export const EXAMPLE_SLOTS = {
   headerSlot: (val) => {
-    // const header = document.createElement('div')
+    const header = document.createElement('div')
     // header.innerHTML = 'slot-header' + val
     // header.onclick = () => {
     //   console.log(renderInstance, '====')
     // }
-    // return header
+    return header
   },
   // footerSlot: (val) => {
   //   const footer = document.createElement('div')

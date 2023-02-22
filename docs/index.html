@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" type="text/css" href="../lib/style.css" />
   <title>❤cy-component-menu❤</title>
-  <link rel="stylesheet" href="./docs/style.css" />
 </head>
 
 <body>
@@ -24,15 +26,15 @@
   </div>
 
 
-  <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+  <script src="../lib/cy-menu.iife.js"></script>
+
   <script type="module">
-    import { renderApp } from './src/main.ts'
-    import { EXAMPLE_PROPS, EXAMPLE_SLOTS } from './docs/example.mjs'
-    const renderInstance = renderApp('#menu', EXAMPLE_PROPS, EXAMPLE_SLOTS)
+    import { EXAMPLE_PROPS, EXAMPLE_SLOTS } from './example.mjs'
+    const renderInstance = CyMenu.renderApp('#menu', EXAMPLE_PROPS, EXAMPLE_SLOTS)
 
     window.changeClick = (type) => {
       const data = renderInstance.getData()
-      switch (type) {
+      switch(type) {
         case 'add': renderInstance.updateData([...data, { title: '新增菜单项', key: new Date().getTime() }])
           break;
         case 'delete': renderInstance.updateData([...data.slice(0, data.length - 1)])
@@ -54,6 +56,11 @@
       renderInstance.updateOpenKeys([1])
     }
   </script>
+
+  <!-- <script type="text/javascript">
+    console.log(CyMenu)
+    CyMenu.renderApp('#app', {}, {})
+  </script> -->
 </body>
 
 </html>

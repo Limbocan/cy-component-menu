@@ -1,18 +1,18 @@
 
 // 菜单参数
 export interface Props {
-  data: MenuItem[]
-  expand?: boolean
-  activeMenu?: string | number | MenuItem
-  footerHeight?: string
-  unique?: boolean
-  labelProp?: string
-  keyProp?: string
-  childProp?: string
-  openKeys?: number[] | string[]
-  height?: string
-  width?: string
-  alwaysPopover?: boolean
+  data: MenuItem[] // []
+  expand?: boolean // true
+  activeMenu?: string | number | MenuItem // null
+  footerHeight?: string // '0'
+  unique?: boolean // true
+  labelProp?: string // 'label'
+  keyProp?: string // 'key'
+  childProp?: string // 'children'
+  openKeys?: number[] | string[] // []
+  height?: string // '100%'
+  width?: string // '240px'
+  alwaysPopover?: boolean // false
   onMenuClick?: (item:MenuItem) => void 
 }
 
@@ -29,9 +29,9 @@ export interface Methods {
   change?: (value: Props.show) => void,
   disposer?: () => void
   getData?: () => Props.data | Props.data
-  setData?: (value: Props.data) => void | (() => Props.data)
+  setData?: (value: Props.data) => void
   getExpand?: () => Props.expand | Props.expand
-  setExpand?: (value: Props.expand) => void | (() => Props.expand)
+  setExpand?: (value: Props.expand) => void
   getActiveMenu?: () => Props.activeMenu | Props.activeMenu
   setActiveMenu?: (value: Props.activeMenu) => void | (() => Props.activeMenu)
   getFooterHeight?: () => Props.footerHeight | Props.footerHeight

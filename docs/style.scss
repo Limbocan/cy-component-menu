@@ -13,22 +13,26 @@ body {
   width: 100%;
   overflow: auto;
   display: flex;
-}
-#app #menu {
-  height: 100%;
-  max-width: 240px;
-}
-#app .demo-box {
-  flex: 1;
-  padding: 16px;
-}
-#app .demo-box .buttons-box {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 12px 0;
-}
-#app .demo-box .buttons-box .demo-button + .demo-button {
-  margin-left: 16px;
+  
+  #menu {
+    height: 100%;
+    max-width: 240px;
+  }
+
+  .demo-box {
+    flex: 1;
+    padding: 16px;
+
+    .buttons-box {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 12px 0;
+
+      .demo-button + .demo-button {
+        margin-left: 16px;
+      }
+    }
+  }
 }
 
 .demo-button {
@@ -49,14 +53,16 @@ body {
   border-radius: 16px;
   padding: 10px 28px;
   transition: 0.2s;
-  box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgba(95, 157, 231, 0.48);
+  box-shadow: -4px -2px 16px 0px #ffffff, 4px 2px 16px 0px rgb(95 157 231 / 48%);
   cursor: pointer;
-}
-.demo-button:hover {
-  color: #516d91;
-  background-color: #E5EDF5;
-  box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgba(95, 157, 231, 0.48);
-}
-.demo-button:active {
-  box-shadow: none;
+
+  &:hover {
+    color: #516d91;
+    background-color: #E5EDF5;
+    box-shadow: -2px -1px 8px 0px #ffffff, 2px 1px 8px 0px rgb(95 157 231 / 48%);
+  }
+  
+  &:active {
+    box-shadow: none;
+  }
 }
